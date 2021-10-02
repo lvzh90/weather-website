@@ -13,10 +13,10 @@ const forescat = async (latitude, longitude) => {
         if (data.error) {
             throw new Error({ message: data.error});
         }
+        
+        const { weather_descriptions: weatherDescription, temperature, feelslike, humidity } =  data.current;
 
-        const { weather_descriptions: weatherDescription, temperature, feelslike } =  data.current;
-
-        return `${weatherDescription[0]}. It's currently ${temperature} degrees out. It feels like ${feelslike} degrees out.`;
+        return `${weatherDescription[0]}. It's currently ${temperature} degrees out .It feels like ${feelslike} degrees out. The humidity is ${humidity}%`;
     } catch(error) {
         console.error(`Something went wrong with the weather service. ${error.message}`);
         throw error;
